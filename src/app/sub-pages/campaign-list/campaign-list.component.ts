@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CampaignService } from '../../campaign-service.service';
+import { CampaignService } from '../../campaign.service';
 import { CommonModule } from '@angular/common';
 import { Campaign } from '../../models/Campaign';
 

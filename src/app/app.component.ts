@@ -7,7 +7,7 @@ import { CreateCampaignComponent } from "./sub-pages/create-campaign/create-camp
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AsideMenuComponent, CampaignListComponent, CreateCampaignComponent],
+  imports: [RouterOutlet, AsideMenuComponent, CampaignListComponent, CreateCampaignComponent ],
   template: `
   <div id="main-container">
     <app-aside-menu />

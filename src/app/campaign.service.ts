@@ -10,7 +10,6 @@ export class CampaignService {
   private readonly URL = "http://localhost:8080/api/campaign";
 
   constructor(private http: HttpClient) { 
-    
   }
 
   loadAllCampaigns(): Observable<Campaign[]> {
