@@ -47,4 +47,8 @@ export class KeywordService {
       this.typeahead = this.keywords.filter(keyword => keyword.toLowerCase().startsWith(input.toLowerCase()));
     }
   }
+
+  clearSelectedKeywords(){
+    this.selectedKeywords = [];
+  }
 }

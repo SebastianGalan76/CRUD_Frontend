@@ -11,12 +11,16 @@ export class SellerService {
   seller?: Seller;
 
   constructor(private http: HttpClient) { 
-    this.loadSeller().subscribe(value => {
-      this.seller = value;
-    });
+    this.refreshSeller();
   }
 
   loadSeller(): Observable<Seller>{
     return this.http.get<Seller>(this.URL);
+  }
+
+  refreshSeller(){
+    this.loadSeller().subscribe(value => {
+      this.seller = value;
+    });
   }
 }

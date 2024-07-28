@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { Campaign } from './models/Campaign';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Campaign } from '../models/Campaign';
+import { CampaignDto } from '../models/CampaignDto';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +19,10 @@ export class CampaignService {
 
   deleteCampaign(campaignId: number){
     this.http.delete(this.URL + '/'+campaignId).subscribe();
+  }
+
+  createCampaign(campaign: CampaignDto): Observable<string>{
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post(this.URL, campaign, { headers, responseType: 'text' });
   }
 }
