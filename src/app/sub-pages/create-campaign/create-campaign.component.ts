@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { KeywordService } from '../../service/keyword.service';
+import { CityService } from '../../service/city.service';
 
 @Component({
   selector: 'app-create-campaign',
@@ -14,7 +15,7 @@ export class CreateCampaignComponent {
   inputName?: string;
   inputKeywords?: string;
 
-  constructor(public keywordService: KeywordService){
+  constructor(public keywordService: KeywordService, public cityService: CityService){
 
   }
 }

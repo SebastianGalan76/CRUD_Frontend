@@ -58,15 +58,22 @@
                     <label for="input-city-name">City</label>
                     
                     <div class="input-area-select">
-                        <div id="city-list-panel" class="item-list-panel" style="display: none;">
+                        <div id="city-list-panel" class="item-list-panel" *ngIf="cityService.focused">
                             <div class="item-list-wrapper scrollable scrollable-vertical">
                                 <div class="item-list-container" id="city-list-container">
+                                    <div class="item" *ngFor="let city of cityService.filteredCities" (click)="cityService.selectCity(city, inputCity)">
+                                        {{ city }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
         
                         <div class="input-container">
-                            <input id="input-city-name" type="text" maxlength="120" autocomplete="off">
+                            <input id="input-city-name" type="text" maxlength="120" autocomplete="off" #inputCity 
+                            (keyup)="cityService.filterCities(inputCity.value)" 
+                            (focus)="cityService.showPanel()"
+                            (blur)="cityService.hidePanel()"
+                            [ngClass]="{'focused': cityService.focused}">
                             <div class="icon">
                                 <i class="fa-solid fa-bars"></i>
                             </div>
