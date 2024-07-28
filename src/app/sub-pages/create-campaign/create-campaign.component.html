@@ -1,0 +1,91 @@
+<div id="page-wrapper">
+    <div class="container">
+        <div class="title">
+            Create a new campaign
+        </div>
+
+        <div class="form-container">
+            <div class="input-container">
+                <label for="input-campaign-name">Campaign name</label>
+                <div class="input-area">
+                    <input id="input-campaign-name" type="text" maxlength="255">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+            </div>
+            <br>
+            <div class="input-container">
+                <label for="input-keyword">Keywords</label>
+                <div class="input-area">
+                    <input id="input-keyword" type="text" list="keywords-typeahead-list" autocomplete="off" maxlength="30">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+                <datalist id="keywords-typeahead-list"></datalist>
+                <div id="selected-keyword-container" class="selected-item-container scrollable scrollable-horizontal">
+                </div>
+            </div>
+            <br>
+            <div class="double-input-container">
+                <div class="input-container">
+                    <label for="input-bid-amount">Bid amount</label>
+                    <div class="input-area">
+                        <input id="input-bid-amount" type="number">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="input-campaign-fund">Campaign fund</label>
+                    <div class="input-area">
+                        <input id="input-campaign-fund" type="number">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="double-input-container">
+                <div class="input-container">
+                    <label for="input-city-name">City</label>
+                    
+                    <div class="input-area-select">
+                        <div id="city-list-panel" class="item-list-panel" style="display: none;">
+                            <div class="item-list-wrapper scrollable scrollable-vertical">
+                                <div class="item-list-container" id="city-list-container">
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="input-container">
+                            <input id="input-city-name" type="text" maxlength="120" autocomplete="off">
+                            <div class="icon">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="input-city-radius">Radius</label>
+                    <div class="input-area">
+                        <input id="input-city-radius" type="number" placeholder="0">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="switch-area">
+                <label class="switch">
+                    <input type="checkbox" id="checkbox-status">
+                    <span class="slider"></span>
+                </label>
+                <span class="label">Campaign is ON</span>
+            </div>
+            <br>
+            <div class="error" id="error-message"></div>
+
+            <div id="submit-button" class="action-button center">Submit</div>
+        </div>
+    </div>
+</div>
