@@ -8,7 +8,7 @@ import { CampaignListComponent } from "./sub-pages/campaign-list/campaign-list.c
   standalone: true,
   imports: [RouterOutlet, AsideMenuComponent, CampaignListComponent],
   template: `
-  <div id="container">
+  <div id="main-container">
     <app-aside-menu />
     <app-campaign-list />
   </div>

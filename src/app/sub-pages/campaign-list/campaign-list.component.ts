@@ -21,4 +21,9 @@ export class CampaignListComponent implements OnInit {
       this.campaigns = value;
     });
   }
+
+  deleteCampaign(campaignId: number){
+    this.campaignService.deleteCampaign(campaignId);
+    this.campaigns = this.campaigns?.filter(campaign => campaign.id !== campaignId);
+  }
 }

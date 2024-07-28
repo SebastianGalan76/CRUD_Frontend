@@ -16,4 +16,8 @@ export class CampaignService {
   loadAllCampaigns(): Observable<Campaign[]> {
     return this.http.get<Campaign[]>(this.URL);
   }
+
+  deleteCampaign(campaignId: number){
+    this.http.delete(this.URL + '/'+campaignId).subscribe();
+  }
 }

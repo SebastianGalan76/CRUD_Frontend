@@ -23,9 +23,11 @@
                         <td>{{ campaign.bidAmount }}</td>
                         <td>{{ campaign.campaignFund }}</td>
                         <td>{{ campaign.keywords }}</td>
-                        <td>{{ campaign.city.name +" ( +"+campaign.radius +"km)" }}</td>
-                        <td>{{ campaign.status ? 'Yes' : 'No' }}</td>
-                        <td></td>
+                        <td class="center">{{ campaign.city.name +" ( +"+campaign.radius +"km)" }}</td>
+                        <td class="center">{{ campaign.status ? 'Active' : 'Inactive' }}</td>
+                        <td class="action-buttons">
+                            <i class="fa-solid fa-trash" (click)="deleteCampaign(campaign.id)"></i>
+                        </td>
                       </tr>
                 </tbody>
             </table>

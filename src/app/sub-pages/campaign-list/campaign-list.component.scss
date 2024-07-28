@@ -35,7 +35,7 @@
                     padding: 3px 10px;
                 }
 
-                .location {
+                .center {
                     text-align: center;
                 }
 
@@ -51,6 +51,9 @@
 
                     .fa-trash{
                         color: $color-red;
+                    }
+                    .fa-trash:hover{
+                        color: $color-red-dark;
                     }
 
                     i:hover{
