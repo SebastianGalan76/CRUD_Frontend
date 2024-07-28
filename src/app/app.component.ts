@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { AsideMenuComponent } from "./aside-menu/aside-menu.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, AsideMenuComponent],
   template: `
-    <h1>Welcome to {{title}}!</h1>
+    <app-aside-menu />
 
     <router-outlet />
   `,
