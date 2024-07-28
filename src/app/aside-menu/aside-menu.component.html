@@ -5,10 +5,10 @@
         </div>
         <div class="info-container">
             <div class="name">
-                Jan Kowalski
+                {{ sellerService.seller?.firstName +" " + sellerService.seller?.lastName }}
             </div>
             <div class="account-balance">
-                <i class="fa-solid fa-coins"></i><span class="account-balance-value">242.1152</span>$
+                <i class="fa-solid fa-coins"></i> {{ sellerService.seller?.balance }}$
             </div>
         </div>
     </div>

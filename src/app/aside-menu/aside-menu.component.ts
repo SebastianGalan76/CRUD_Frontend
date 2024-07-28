@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SellerService, Seller } from './seller-service.service';
 
 @Component({
   selector: 'app-aside-menu',
@@ -7,6 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: './aside-menu.component.html',
   styleUrl: './aside-menu.component.scss'
 })
-export class AsideMenuComponent {
 
+export class AsideMenuComponent {
+  constructor(public sellerService : SellerService) {
+    
+  }
 }

@@ -8,11 +8,11 @@ import { AsideMenuComponent } from "./aside-menu/aside-menu.component";
   imports: [RouterOutlet, AsideMenuComponent],
   template: `
     <app-aside-menu />
-
+    
     <router-outlet />
   `,
   styles: [],
 })
 export class AppComponent {
-  title = 'CampaignFront';
+  
 }
