@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { SellerService, Seller } from './seller-service.service';
+import { Component } from '@angular/core';
+import { SellerService } from './seller-service.service';
 
 @Component({
   selector: 'app-aside-menu',

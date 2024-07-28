@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Seller } from '../models/Seller';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +19,4 @@ export class SellerService {
   loadSeller(): Observable<Seller>{
     return this.http.get<Seller>(this.URL);
   }
-}
-
-export interface Seller{
-  id: number;
-  firstName: string;
-  lastName: string;
-  balance: number;
 }
