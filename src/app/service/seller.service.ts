@@ -7,7 +7,7 @@ import { Seller } from '../models/Seller';
   providedIn: 'root'
 })
 export class SellerService {
-  private readonly URL = "http://localhost:8080/api/seller";
+  private readonly URL = "https://test43.alwaysdata.net/api/seller";
   seller?: Seller;
 
   constructor(private http: HttpClient) { 

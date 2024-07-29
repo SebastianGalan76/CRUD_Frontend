@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class KeywordService {
-  private readonly URL = "http://localhost:8080/api/keyword";
+  private readonly URL = "https://test43.alwaysdata.net/api/keyword";
   
   keywords: string[] = [];
 

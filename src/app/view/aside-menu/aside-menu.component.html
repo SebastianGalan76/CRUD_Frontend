@@ -3,12 +3,12 @@
         <div class="icon">
             <i class="fa-solid fa-circle-user"></i>
         </div>
-        <div class="info-container">
+        <div class="info-container" *ngIf="sellerService.seller; else loading">
             <div class="name">
-                {{ sellerService.seller?.firstName +" " + sellerService.seller?.lastName }}
+                {{ sellerService.seller.firstName +" " + sellerService.seller.lastName }}
             </div>
             <div class="account-balance">
-                <i class="fa-solid fa-coins"></i> {{ sellerService.seller?.balance }}$
+                <i class="fa-solid fa-coins"></i> {{ sellerService.seller.balance }}$
             </div>
         </div>
     </div>
@@ -21,3 +21,6 @@
         </ul>
     </div>
 </aside>
+<ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>

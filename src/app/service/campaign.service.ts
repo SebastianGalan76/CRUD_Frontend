@@ -8,7 +8,7 @@ import { CampaignDto } from '../models/CampaignDto';
   providedIn: 'root'
 })
 export class CampaignService {
-  private readonly URL = "http://localhost:8080/api/campaign";
+  private readonly URL = "https://test43.alwaysdata.net/api/campaign";
 
   constructor(private http: HttpClient) { 
   }
