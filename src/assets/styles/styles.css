@@ -5,11 +5,11 @@
   width: 100%;
 }
 
-app-aside-menu{
+app-aside-menu {
   flex-shrink: 0;
 }
 
-app-campaign-list{
+app-campaign-list {
   flex-grow: 1;
 }
 
@@ -17,6 +17,6 @@ app-create-campaign {
   flex-grow: 1;
 }
 
-app-edit-campaign{
+app-edit-campaign {
   flex-grow: 1;
-}
+}/*# sourceMappingURL=styles.css.map */

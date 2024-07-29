@@ -48,6 +48,10 @@ export class KeywordService {
     }
   }
 
+  loadKeywords(keywords: string){
+    this.selectedKeywords = keywords.split(',');
+  }
+
   clearSelectedKeywords(){
     this.selectedKeywords = [];
   }

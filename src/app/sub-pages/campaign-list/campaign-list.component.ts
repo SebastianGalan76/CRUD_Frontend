@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CampaignService } from '../../service/campaign.service';
 import { CommonModule } from '@angular/common';
 import { Campaign } from '../../models/Campaign';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-campaign-list',
@@ -13,7 +14,7 @@ import { Campaign } from '../../models/Campaign';
 export class CampaignListComponent implements OnInit {
   campaigns?: Campaign[];
 
-  constructor(public campaignService:CampaignService) {
+  constructor(public campaignService:CampaignService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -25,5 +26,8 @@ export class CampaignListComponent implements OnInit {
   deleteCampaign(campaignId: number){
     this.campaignService.deleteCampaign(campaignId);
     this.campaigns = this.campaigns?.filter(campaign => campaign.id !== campaignId);
+  }
+  editCampaign(campaignId: number){
+    this.router.navigate([`/edit/${campaignId}`]);
   }
 }

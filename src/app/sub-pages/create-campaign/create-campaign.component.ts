@@ -5,7 +5,7 @@ import { KeywordService } from '../../service/keyword.service';
 import { CityService } from '../../service/city.service';
 import { CampaignDto } from '../../models/CampaignDto';
 import { CampaignService } from '../../service/campaign.service';
-import { SellerService } from '../../aside-menu/seller.service';
+import { SellerService } from '../../service/seller.service';
 
 @Component({
   selector: 'app-create-campaign',
@@ -28,19 +28,23 @@ export class CreateCampaignComponent {
   constructor(public campaignService: CampaignService, public sellerService: SellerService, public keywordService: KeywordService, public cityService: CityService) {}
 
   createNewCampaign() {
-    if (!this.verifyInputs()) {
-      return;
-    }
-    this.errorMessage = '';
-
     let campaignDto = new CampaignDto();
     campaignDto.name = this.inputName;
     campaignDto.bidAmount = parseFloat(this.inputBidAmount);
     campaignDto.campaignFund = parseFloat(this.inputCampaignFund);
-    campaignDto.city = this.inputCityName;
+
+    const inputCity = document.getElementById('input-city-name') as HTMLInputElement;
+    campaignDto.city = inputCity.value;
+
     campaignDto.radius = parseFloat(this.inputRadius);
     campaignDto.keywords = this.keywordService.selectedKeywords;
     campaignDto.status = this.checkboxStatus;
+
+    const verifyResult = this.campaignService.verifyCampaignDto(campaignDto);
+    if (verifyResult != '') {
+      this.errorMessage = verifyResult;
+    }
+    this.errorMessage = '';
 
     this.campaignService.createCampaign(campaignDto).subscribe({
       next: (response) => {
@@ -55,42 +59,6 @@ export class CreateCampaignComponent {
         this.errorMessage = e.error;
       }
     });
-  }
-
-  verifyInputs() : boolean{
-    if (this.inputName.trim().length <= 3) {
-      this.errorMessage = "The campaign name is too short";
-      return false;
-    }
-    var bidAmount = parseFloat(this.inputBidAmount);
-    var fundAmount = parseFloat(this.inputCampaignFund);
-
-    if (isNaN(bidAmount) || bidAmount < 0.02) {
-      this.errorMessage = "The campaign bid amount is too small";
-      return false;
-    }
-    if (isNaN(fundAmount) || fundAmount < bidAmount) {
-      this.errorMessage = "The campaign fund cannot be less than the bid amount";
-      return false;
-    }
-    if (parseFloat(this.inputRadius) < 0) {
-      this.errorMessage = "The radius cannot be less than 0";
-      return false;
-    }
-
-    const inputElement = document.getElementById('input-city-name') as HTMLInputElement;
-    this.inputCityName = inputElement.value;
-
-    if (this.inputCityName.trim().length == 0) {
-      this.errorMessage = "City name cannot be empty";
-      return false;
-    }
-    if (this.keywordService.selectedKeywords.length == 0) {
-      this.errorMessage = "You need to enter some keywords. After typing press Enter to add keyword to the list";
-      return false;
-    }
-
-    return true;
   }
 
   clearForm() {

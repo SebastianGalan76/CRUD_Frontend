@@ -1,0 +1,114 @@
+<div id="page-wrapper">
+    <div class="container">
+        <div class="title">
+            Edit campaign
+        </div>
+
+        <div class="form-container">
+            <div class="input-container">
+                <label for="input-campaign-name">Campaign name</label>
+                <div class="input-area">
+                    <input id="input-campaign-name" type="text" maxlength="255" [(ngModel)]="inputName">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+            </div>
+            <br>
+            <div class="input-container">
+                <label for="input-keyword">Keywords</label>
+                <div class="input-area">
+                    <input id="input-keyword" type="text" list="keywords-typeahead-list" autocomplete="off" maxlength="30" 
+                    #inputKeyword (keyup.enter)="keywordService.addKeyword(inputKeyword.value); inputKeyword.value = ''"
+                    (input)="keywordService.changeTypeahead(inputKeyword.value)">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+                <datalist id="keywords-typeahead-list">
+                    <option *ngFor="let keyword of keywordService.typeahead" [value]="keyword"></option>
+                </datalist>
+                <div id="selected-keyword-container" class="selected-item-container scrollable scrollable-horizontal">
+                    <div class="item" *ngFor="let keyword of keywordService.selectedKeywords">
+                        <span class="keyword"> {{ keyword }}</span>
+                        <div class="remove-button" (click)="keywordService.deleteKeyword(keyword)"><i class="fa-solid fa-trash"></i></div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="input-container">
+                <label for="input-bid-amount">Bid amount</label>
+                <div class="input-area">
+                    <input id="input-bid-amount" type="number" [(ngModel)]="inputBidAmount">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+            </div>
+            <br>
+            <div class="double-input-container">
+                <div class="campaign-fund-info">
+                    <span>Current campaign funds: </span><span id="current-funds-value">{{ currentCampaingFund }}</span>$
+                </div>
+
+                <div class="input-container">
+                    <label for="input-campaign-fund">Increase fund by</label>
+                    <div class="input-area">
+                        <input id="input-campaign-fund" type="number" placeholder="0" [(ngModel)]="inputCampaignFund">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="double-input-container">
+                <div class="input-container">
+                    <label for="input-city-name">City</label>
+                    
+                    <div class="input-area-select">
+                        <div id="city-list-panel" class="item-list-panel" *ngIf="cityService.focused">
+                            <div class="item-list-wrapper scrollable scrollable-vertical">
+                                <div class="item-list-container" id="city-list-container">
+                                    <div class="item" *ngFor="let city of cityService.filteredCities" (click)="cityService.selectCity(city, inputCity)">
+                                        {{ city }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="input-container">
+                            <input id="input-city-name" type="text" maxlength="120" autocomplete="off" #inputCity 
+                            (keyup)="cityService.filterCities(inputCity.value)" 
+                            (focus)="cityService.showPanel()"
+                            (blur)="cityService.hidePanel();"
+                            [ngClass]="{'focused': cityService.focused}"
+                            [(ngModel)]="inputCityName"
+                            >
+                            <div class="icon">
+                                <i class="fa-solid fa-bars"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="input-city-radius">Radius</label>
+                    <div class="input-area">
+                        <input id="input-city-radius" type="number" placeholder="0" [(ngModel)]="inputRadius">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="switch-area">
+                <label class="switch">
+                    <input type="checkbox" id="checkbox-status" [(ngModel)]="checkboxStatus">
+                    <span class="slider"></span>
+                </label>
+                <span class="label">Campaign is ON</span>
+            </div>
+            <br>
+            <div class="error" id="error-message">{{ errorMessage }}</div>
+
+            <div id="submit-button" class="action-button center" (click)="editCampaign()">Submit</div>
+        </div>
+    </div>
+</div>
