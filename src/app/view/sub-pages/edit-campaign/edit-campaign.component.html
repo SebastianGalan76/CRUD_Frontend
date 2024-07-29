@@ -59,7 +59,7 @@
                     <input type="checkbox" id="checkbox-status" [(ngModel)]="checkboxStatus">
                     <span class="slider"></span>
                 </label>
-                <span class="label">Campaign is ON</span>
+                <span class="label">Campaign is {{checkboxStatus ? 'Active' : 'Inactive'}}</span>
             </div>
             <br>
             <div class="error" id="error-message">{{ errorMessage }}</div>

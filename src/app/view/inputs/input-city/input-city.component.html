@@ -15,7 +15,7 @@
         <div class="input-container">
             <input id="input-city-name" type="text" maxlength="120" autocomplete="off" #inputCity 
             (keyup)="filterCities(inputCity.value)" 
-            (focus)="showPanel()"
+            (focus)="showPanel(); filterCities(inputCity.value)"
             (blur)="hidePanel();"
             [ngClass]="{'focused': focused}"
             [(ngModel)]="cityName">

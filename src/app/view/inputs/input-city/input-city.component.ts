@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
   templateUrl: './input-city.component.html',
   styleUrl: '../../../../assets/styles/formElement.scss'
 })
-export class InputCityComponent {
+export class InputCityComponent{
   filteredCities: string[] = [];
   focused: boolean = false;
 
