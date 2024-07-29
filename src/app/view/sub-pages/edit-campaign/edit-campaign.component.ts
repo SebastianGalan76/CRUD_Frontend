@@ -3,21 +3,21 @@ import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from '../../../service/campaign.service';
-import { KeywordService } from '../../../service/keyword.service';
-import { CityService } from '../../../service/city.service';
 import { SellerService } from '../../../service/seller.service';
 import { CampaignDto } from '../../../models/CampaignDto';
 import { InputCityComponent } from '../../inputs/input-city/input-city.component';
+import { InputKeywordComponent } from "../../inputs/input-keyword/input-keyword.component";
 
 @Component({
   selector: 'app-edit-campaign',
   standalone: true,
-  imports: [FormsModule, CommonModule, InputCityComponent],
+  imports: [FormsModule, CommonModule, InputCityComponent, InputKeywordComponent],
   templateUrl: './edit-campaign.component.html',
   styleUrls: ['./edit-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class EditCampaignComponent implements OnInit {
   @ViewChild(InputCityComponent) inputCityComponent!: InputCityComponent;
+  @ViewChild(InputKeywordComponent) inputKeywordComponent!: InputKeywordComponent;
 
   campaignId: number | null = 0;
   currentCampaingFund: number = 0;
@@ -30,7 +30,7 @@ export class EditCampaignComponent implements OnInit {
   
   errorMessage: string = '';
 
-  constructor(private campaignService: CampaignService, public keywordService: KeywordService, public cityService: CityService, private sellerService: SellerService, private route: ActivatedRoute) { }
+  constructor(private campaignService: CampaignService, private sellerService: SellerService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -48,7 +48,7 @@ export class EditCampaignComponent implements OnInit {
         this.inputRadius = campaign.radius.toString();
         this.checkboxStatus = campaign.status;
 
-        this.keywordService.loadKeywords(campaign.keywords);
+        this.inputKeywordComponent.loadKeywords(campaign.keywords);
       });
     }
   }
@@ -64,7 +64,7 @@ export class EditCampaignComponent implements OnInit {
     campaignDto.campaignFund = parseFloat(this.inputCampaignFund);
     campaignDto.city = this.inputCityComponent.cityName;
     campaignDto.radius = parseFloat(this.inputRadius);
-    campaignDto.keywords = this.keywordService.selectedKeywords;
+    campaignDto.keywords = this.inputKeywordComponent.selectedKeywords;
     campaignDto.status = this.checkboxStatus;
 
     const verifyResult = this.campaignService.verifyCampaignDto(campaignDto);

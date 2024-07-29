@@ -14,25 +14,7 @@
                 </div>
             </div>
             <br>
-            <div class="input-container">
-                <label for="input-keyword">Keywords</label>
-                <div class="input-area">
-                    <input id="input-keyword" type="text" list="keywords-typeahead-list" autocomplete="off" maxlength="30" 
-                    #inputKeyword (keyup.enter)="keywordService.addKeyword(inputKeyword.value); inputKeyword.value = ''"
-                    (input)="keywordService.changeTypeahead(inputKeyword.value)">
-                    <span class="required">*</span>
-                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
-                </div>
-                <datalist id="keywords-typeahead-list">
-                    <option *ngFor="let keyword of keywordService.typeahead" [value]="keyword"></option>
-                </datalist>
-                <div id="selected-keyword-container" class="selected-item-container scrollable scrollable-horizontal">
-                    <div class="item" *ngFor="let keyword of keywordService.selectedKeywords">
-                        <span class="keyword"> {{ keyword }}</span>
-                        <div class="remove-button" (click)="keywordService.deleteKeyword(keyword)"><i class="fa-solid fa-trash"></i></div>
-                    </div>
-                </div>
-            </div>
+            <app-input-keyword />
             <br>
             <div class="input-container">
                 <label for="input-bid-amount">Bid amount</label>

@@ -7,16 +7,18 @@ import { KeywordService } from '../../../service/keyword.service';
 import { CityService } from '../../../service/city.service';
 import { CampaignDto } from '../../../models/CampaignDto';
 import { InputCityComponent } from "../../inputs/input-city/input-city.component";
+import { InputKeywordComponent } from '../../inputs/input-keyword/input-keyword.component';
 
 @Component({
   selector: 'app-create-campaign',
   standalone: true,
-  imports: [FormsModule, CommonModule, InputCityComponent],
+  imports: [FormsModule, CommonModule, InputCityComponent, InputKeywordComponent],
   templateUrl: './create-campaign.component.html',
   styleUrls: ['./create-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class CreateCampaignComponent {
   @ViewChild(InputCityComponent) inputCityComponent!: InputCityComponent;
+  @ViewChild(InputKeywordComponent) inputKeywordComponent!: InputKeywordComponent;
 
   inputName: string = '';
   inputBidAmount: string = '';
@@ -35,7 +37,7 @@ export class CreateCampaignComponent {
     campaignDto.campaignFund = parseFloat(this.inputCampaignFund);
     campaignDto.city = this.inputCityComponent.cityName;
     campaignDto.radius = parseFloat(this.inputRadius);
-    campaignDto.keywords = this.keywordService.selectedKeywords;
+    campaignDto.keywords = this.inputKeywordComponent.selectedKeywords;
     campaignDto.status = this.checkboxStatus;
 
     const verifyResult = this.campaignService.verifyCampaignDto(campaignDto);
@@ -67,7 +69,7 @@ export class CreateCampaignComponent {
     this.inputRadius = '';
     this.checkboxStatus = false;
 
-    this.keywordService.clearSelectedKeywords();
+    this.inputKeywordComponent.clearSelectedKeywords();
 
     (document.getElementById('input-city-name') as HTMLInputElement).value = '';
   }
