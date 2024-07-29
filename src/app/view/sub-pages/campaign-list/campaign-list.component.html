@@ -1,0 +1,37 @@
+<div id="page-wrapper">
+    <div class="container">
+        <div class="title">
+            Campaign list
+        </div>
+
+        <div class="list-container">
+            <table id="campaign-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Bid Amount</th>
+                        <th>Campaign Fund</th>
+                        <th>Keywords</th>
+                        <th>Location</th>
+                        <th>Active</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let campaign of campaigns">
+                        <td>{{ campaign.name }}</td>
+                        <td>{{ campaign.bidAmount }}</td>
+                        <td>{{ campaign.campaignFund }}</td>
+                        <td>{{ campaign.keywords }}</td>
+                        <td class="center">{{ campaign.city.name +" ( +"+campaign.radius +"km)" }}</td>
+                        <td class="center">{{ campaign.status ? 'Active' : 'Inactive' }}</td>
+                        <td class="action-buttons">
+                            <i class="fa-solid fa-pen-to-square" (click)="editCampaign(campaign.id)"></i>
+                            <i class="fa-solid fa-trash" (click)="deleteCampaign(campaign.id)"></i>
+                        </td>
+                      </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

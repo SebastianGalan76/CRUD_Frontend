@@ -1,0 +1,26 @@
+<aside>
+    <div id="seller-panel">
+        <div class="icon">
+            <i class="fa-solid fa-circle-user"></i>
+        </div>
+        <div class="info-container" *ngIf="sellerService.seller; else loading">
+            <div class="name">
+                {{ sellerService.seller.firstName +" " + sellerService.seller.lastName }}
+            </div>
+            <div class="account-balance">
+                <i class="fa-solid fa-coins"></i> {{ sellerService.seller.balance }}$
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-panel">
+        <div class="title">MENU</div>
+        <ul>
+            <a href="/create"><li>New Campaign</li></a>
+            <a href="/list"><li>Campaign List</li></a>
+        </ul>
+    </div>
+</aside>
+<ng-template #loading>
+    <p>Loading...</p>
+  </ng-template>

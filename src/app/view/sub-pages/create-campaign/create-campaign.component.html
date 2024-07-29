@@ -1,0 +1,64 @@
+<div id="page-wrapper">
+    <div class="container">
+        <div class="title">
+            Create a new campaign
+        </div>
+
+        <div class="form-container">
+            <div class="input-container">
+                <label for="input-campaign-name">Campaign name</label>
+                <div class="input-area">
+                    <input id="input-campaign-name" type="text" maxlength="255" [(ngModel)]="inputName">
+                    <span class="required">*</span>
+                    <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                </div>
+            </div>
+            <br>
+            <app-input-keyword />
+            <br>
+            <div class="double-input-container">
+                <div class="input-container">
+                    <label for="input-bid-amount">Bid amount</label>
+                    <div class="input-area">
+                        <input id="input-bid-amount" type="number" [(ngModel)]="inputBidAmount">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+                <div class="input-container">
+                    <label for="input-campaign-fund">Campaign fund</label>
+                    <div class="input-area">
+                        <input id="input-campaign-fund" type="number" [(ngModel)]="inputCampaignFund">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="double-input-container">
+                <app-input-city />
+                
+                <div class="input-container">
+                    <label for="input-city-radius">Radius</label>
+                    <div class="input-area">
+                        <input id="input-city-radius" type="number" placeholder="0" [(ngModel)]="inputRadius">
+                        <span class="required">*</span>
+                        <span class="icon"><i class="fa-solid fa-envelope"></i></span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="switch-area">
+                <label class="switch">
+                    <input type="checkbox" id="checkbox-status" [(ngModel)]="checkboxStatus">
+                    <span class="slider"></span>
+                </label>
+                <span class="label">Campaign is {{checkboxStatus ? 'Active' : 'Inactive'}}</span>
+            </div>
+            <br>
+            <div class="error" id="error-message"> {{ errorMessage }}</div>
+
+            <div id="submit-button" class="action-button center" (click)="createNewCampaign()">Submit</div>
+        </div>
+    </div>
+</div>

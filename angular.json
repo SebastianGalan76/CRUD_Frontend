@@ -7,8 +7,8 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "inlineTemplate": true,
-          "inlineStyle": true,
+          "inlineTemplate": false,
+          "inlineStyle": false,
           "style": "scss",
           "skipTests": true
         },
@@ -56,8 +56,15 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/assets/styles/styles.scss",
+              "src/assets/styles/global.scss",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/assets/styles"
+              ]
+            },
             "scripts": []
           },
           "configurations": {
