@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from '../../../service/campaign.service';
@@ -6,24 +6,25 @@ import { SellerService } from '../../../service/seller.service';
 import { KeywordService } from '../../../service/keyword.service';
 import { CityService } from '../../../service/city.service';
 import { CampaignDto } from '../../../models/CampaignDto';
+import { InputCityComponent } from "../../inputs/input-city/input-city.component";
 
 @Component({
   selector: 'app-create-campaign',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, InputCityComponent],
   templateUrl: './create-campaign.component.html',
   styleUrls: ['./create-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class CreateCampaignComponent {
+  @ViewChild(InputCityComponent) inputCityComponent!: InputCityComponent;
+
   inputName: string = '';
   inputBidAmount: string = '';
   inputCampaignFund: string = '';
-  inputCityName: string = '';
   inputRadius: string = '';
   checkboxStatus: boolean = false;
   
   errorMessage: string = '';
-
 
   constructor(public campaignService: CampaignService, public sellerService: SellerService, public keywordService: KeywordService, public cityService: CityService) {}
 
@@ -32,10 +33,7 @@ export class CreateCampaignComponent {
     campaignDto.name = this.inputName;
     campaignDto.bidAmount = parseFloat(this.inputBidAmount);
     campaignDto.campaignFund = parseFloat(this.inputCampaignFund);
-
-    const inputCity = document.getElementById('input-city-name') as HTMLInputElement;
-    campaignDto.city = inputCity.value;
-
+    campaignDto.city = this.inputCityComponent.cityName;
     campaignDto.radius = parseFloat(this.inputRadius);
     campaignDto.keywords = this.keywordService.selectedKeywords;
     campaignDto.status = this.checkboxStatus;
@@ -65,7 +63,7 @@ export class CreateCampaignComponent {
     this.inputName = '';
     this.inputBidAmount = '';
     this.inputCampaignFund = '';
-    this.inputCityName = '';
+    this.inputCityComponent.cityName = '';
     this.inputRadius = '';
     this.checkboxStatus = false;
 

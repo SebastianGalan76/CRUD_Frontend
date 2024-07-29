@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -7,22 +7,24 @@ import { KeywordService } from '../../../service/keyword.service';
 import { CityService } from '../../../service/city.service';
 import { SellerService } from '../../../service/seller.service';
 import { CampaignDto } from '../../../models/CampaignDto';
+import { InputCityComponent } from '../../inputs/input-city/input-city.component';
 
 @Component({
   selector: 'app-edit-campaign',
   standalone: true,
-  imports: [FormsModule, CommonModule],
+  imports: [FormsModule, CommonModule, InputCityComponent],
   templateUrl: './edit-campaign.component.html',
   styleUrls: ['./edit-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class EditCampaignComponent implements OnInit {
+  @ViewChild(InputCityComponent) inputCityComponent!: InputCityComponent;
+
   campaignId: number | null = 0;
   currentCampaingFund: number = 0;
 
   inputName: string = '';
   inputBidAmount: string = '';
   inputCampaignFund: string = '';
-  inputCityName: string = '';
   inputRadius: string = '';
   checkboxStatus: boolean = false;
   
@@ -42,7 +44,7 @@ export class EditCampaignComponent implements OnInit {
 
         this.inputName = campaign.name;
         this.inputBidAmount = campaign.bidAmount.toString();
-        this.inputCityName = campaign.city.name;
+        this.inputCityComponent.cityName = campaign.city.name;
         this.inputRadius = campaign.radius.toString();
         this.checkboxStatus = campaign.status;
 
@@ -60,10 +62,7 @@ export class EditCampaignComponent implements OnInit {
     campaignDto.name = this.inputName;
     campaignDto.bidAmount = parseFloat(this.inputBidAmount);
     campaignDto.campaignFund = parseFloat(this.inputCampaignFund);
-
-    const inputCity = document.getElementById('input-city-name') as HTMLInputElement;
-    campaignDto.city = inputCity.value;
-
+    campaignDto.city = this.inputCityComponent.cityName;
     campaignDto.radius = parseFloat(this.inputRadius);
     campaignDto.keywords = this.keywordService.selectedKeywords;
     campaignDto.status = this.checkboxStatus;
