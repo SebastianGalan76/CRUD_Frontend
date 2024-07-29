@@ -43,6 +43,7 @@ export class CreateCampaignComponent {
     const verifyResult = this.campaignService.verifyCampaignDto(campaignDto);
     if (verifyResult != '') {
       this.errorMessage = verifyResult;
+      return;
     }
     this.errorMessage = '';
 

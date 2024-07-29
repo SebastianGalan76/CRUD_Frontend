@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CampaignService } from '../../../service/campaign.service';
@@ -27,10 +27,10 @@ export class EditCampaignComponent implements OnInit {
   inputCampaignFund: string = '';
   inputRadius: string = '';
   checkboxStatus: boolean = false;
-  
+
   errorMessage: string = '';
 
-  constructor(private campaignService: CampaignService, private sellerService: SellerService, private route: ActivatedRoute) { }
+  constructor(private campaignService: CampaignService, private sellerService: SellerService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -40,6 +40,11 @@ export class EditCampaignComponent implements OnInit {
 
     if (this.campaignId) {
       this.campaignService.getCampaign(this.campaignId).subscribe(campaign => {
+        if(campaign == null){
+          this.router.navigate([`/create`]);
+          return;
+        }
+
         this.currentCampaingFund = campaign.campaignFund;
 
         this.inputName = campaign.name;
@@ -54,7 +59,7 @@ export class EditCampaignComponent implements OnInit {
   }
 
   editCampaign() {
-    if(!this.campaignId){
+    if (!this.campaignId) {
       return;
     }
 
@@ -70,6 +75,7 @@ export class EditCampaignComponent implements OnInit {
     const verifyResult = this.campaignService.verifyCampaignDto(campaignDto);
     if (verifyResult != '') {
       this.errorMessage = verifyResult;
+      return;
     }
     this.errorMessage = '';
 

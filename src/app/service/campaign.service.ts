@@ -43,11 +43,8 @@ export class CampaignService {
     if (!campaignDto.bidAmount || isNaN(campaignDto.bidAmount) || campaignDto.bidAmount < 0.02) {
       return "The campaign bid amount is too small";
     }
-    if (!campaignDto.campaignFund || isNaN(campaignDto.campaignFund) || campaignDto.campaignFund < 0) {
-      return "The campaign fund cannot be less than 0";
-    }
-    if (!campaignDto.radius || campaignDto.radius < 0) {
-      return "The radius cannot be less than 0";
+    if (campaignDto.radius && campaignDto.radius < 0) {
+      return "The radius cannot be less than 0 xd";
     }
     if (!campaignDto.city || campaignDto.city.length == 0) {
       return "City name cannot be empty";
