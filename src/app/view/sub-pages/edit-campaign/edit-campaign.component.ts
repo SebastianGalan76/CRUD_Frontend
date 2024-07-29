@@ -2,19 +2,18 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { CampaignService } from '../../service/campaign.service';
-import { Campaign } from '../../models/Campaign';
-import { CampaignDto } from '../../models/CampaignDto';
-import { KeywordService } from '../../service/keyword.service';
-import { SellerService } from '../../service/seller.service';
-import { CityService } from '../../service/city.service';
+import { CampaignService } from '../../../service/campaign.service';
+import { KeywordService } from '../../../service/keyword.service';
+import { CityService } from '../../../service/city.service';
+import { SellerService } from '../../../service/seller.service';
+import { CampaignDto } from '../../../models/CampaignDto';
 
 @Component({
   selector: 'app-edit-campaign',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './edit-campaign.component.html',
-  styleUrls: ['./edit-campaign.component.scss', '../../../assets/styles/formElement.scss'],
+  styleUrls: ['./edit-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class EditCampaignComponent implements OnInit {
   campaignId: number | null = 0;

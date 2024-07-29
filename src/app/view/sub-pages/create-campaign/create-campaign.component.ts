@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { KeywordService } from '../../service/keyword.service';
-import { CityService } from '../../service/city.service';
-import { CampaignDto } from '../../models/CampaignDto';
-import { CampaignService } from '../../service/campaign.service';
-import { SellerService } from '../../service/seller.service';
+import { CampaignService } from '../../../service/campaign.service';
+import { SellerService } from '../../../service/seller.service';
+import { KeywordService } from '../../../service/keyword.service';
+import { CityService } from '../../../service/city.service';
+import { CampaignDto } from '../../../models/CampaignDto';
 
 @Component({
   selector: 'app-create-campaign',
   standalone: true,
   imports: [FormsModule, CommonModule],
   templateUrl: './create-campaign.component.html',
-  styleUrls: ['./create-campaign.component.scss', '../../../assets/styles/formElement.scss'],
+  styleUrls: ['./create-campaign.component.scss', '../../../../assets/styles/formElement.scss'],
 })
 export class CreateCampaignComponent {
   inputName: string = '';

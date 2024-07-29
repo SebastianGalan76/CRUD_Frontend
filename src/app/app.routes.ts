@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { CreateCampaignComponent } from './sub-pages/create-campaign/create-campaign.component';
-import { CampaignListComponent } from './sub-pages/campaign-list/campaign-list.component';
-import { EditCampaignComponent } from './sub-pages/edit-campaign/edit-campaign.component';
+import { CreateCampaignComponent } from './view/sub-pages/create-campaign/create-campaign.component';
+import { CampaignListComponent } from './view/sub-pages/campaign-list/campaign-list.component';
+import { EditCampaignComponent } from './view/sub-pages/edit-campaign/edit-campaign.component';
 
 export const routes: Routes = [
     { path: 'create', component: CreateCampaignComponent },
